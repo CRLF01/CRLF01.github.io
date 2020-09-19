@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>crlf&#39;s blog</title>
+  <title>CRLF&#39;s Blog</title>
   
-  <subtitle>绳锯木断,水滴石穿,临渊羡鱼,不如退而结网 ,水至清则无鱼,人至察则无徒。</subtitle>
+  <subtitle>临渊羡鱼,不如退而结网,水至清则无鱼,人至察则无徒。</subtitle>
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>

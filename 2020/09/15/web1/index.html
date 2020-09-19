@@ -1,0 +1,221 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="theme-color" content="#ffffff"><link rel="manifest" href="/manifest.json?v=2.1.1"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.1.1" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.1.1" type="image/png" sizes="32x32"><meta name="description" content="SQL注入简介                           (1.) 简介：       ​    SQL注入是指Web应用程序对用户输入数据的合法性未进行合理的判断或处理，前端传入的参数是攻击者可控的，并且参数被正常的带入到数据库查询，攻击者可以通过构造不同的SQL语句来进行对数据库的操作，正常情况下，攻击者可以对数据库进行高危操作，例如，数据查询">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQL注入基础">
+<meta property="og:url" content="http://example.com/2020/09/15/web1/index.html">
+<meta property="og:site_name" content="CRLF&#39;s Blog">
+<meta property="og:description" content="SQL注入简介                           (1.) 简介：       ​    SQL注入是指Web应用程序对用户输入数据的合法性未进行合理的判断或处理，前端传入的参数是攻击者可控的，并且参数被正常的带入到数据库查询，攻击者可以通过构造不同的SQL语句来进行对数据库的操作，正常情况下，攻击者可以对数据库进行高危操作，例如，数据查询">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2020/09/15/web1/web1.assets/image-20200915160546522.png">
+<meta property="og:image" content="http://example.com/2020/09/15/web1/web1.assets/image-20200915171437163.png">
+<meta property="article:published_time" content="2020-09-15T07:46:37.000Z">
+<meta property="article:modified_time" content="2020-09-19T09:38:41.577Z">
+<meta property="article:author" content="crlf">
+<meta property="article:tag" content="Web安全">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2020/09/15/web1/web1.assets/image-20200915160546522.png"><title>SQL注入基础 | CRLF's Blog</title><link ref="canonical" href="http://example.com/2020/09/15/web1/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.1.1"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":4},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":true},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"carbon","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: {"avoidBanner":true},
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: {"switchPost":true},
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="CRLF's Blog" type="application/atom+xml">
+</head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">CRLF's Blog</div><div class="header-banner-info__subtitle">临渊羡鱼,不如退而结网,水至清则无鱼,人至察则无徒。</div></div><div class="header-banner-arrow"><div class="header-banner-arrow__icon"><i class="fas fa-angle-down"></i></div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">SQL注入基础</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2020-09-15</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2020-09-19</span></span><span class="post-meta-item post-meta-item--visitors"><span class="post-meta-item__icon"><i class="fas fa-eye"></i></span><span class="post-meta-item__info">阅读次数</span><span class="post-meta-item__value" id="busuanzi_value_page_pv"></span></span></div></header><div class="post-body">
+        <h2 id="SQL注入简介"   >
+          <a href="#SQL注入简介" class="heading-link"><i class="fas fa-link"></i></a>SQL注入简介</h2>
+      
+        <h3 id="1-简介："   >
+          <a href="#1-简介：" class="heading-link"><i class="fas fa-link"></i></a>(1.) 简介：</h3>
+      <p>​    SQL注入是指Web应用程序对用户输入数据的合法性未进行合理的判断或处理，前端传入的参数是攻击者可控的，并且参数被正常的带入到数据库查询，攻击者可以通过构造不同的SQL语句来进行对数据库的操作，正常情况下，攻击者可以对数据库进行高危操作，例如，数据查询、WebShell写入、命令执行等操作。</p>
+<p>​    <img src="web1.assets/image-20200915160546522.png" alt="image-20200915160546522"></p>
+
+        <h3 id="2-SQL注入分类："   >
+          <a href="#2-SQL注入分类：" class="heading-link"><i class="fas fa-link"></i></a>(2.) SQL注入分类：</h3>
+      <p>​    按照不同角度SQL注入又分为不同的类型：</p>
+<ul>
+<li>
+        <h5 id="按照不同数据库分类："   >
+          <a href="#按照不同数据库分类：" class="heading-link"><i class="fas fa-link"></i></a>按照不同数据库分类：</h5>
+      <ul>
+<li><p>MySQL注入</p>
+</li>
+<li><p>Oracle注入</p>
+</li>
+<li><p>MsSQL注入(SQLServer)</p>
+</li>
+<li><p>Access注入</p>
+</li>
+<li><p>DB2注入</p>
+<p>……</p>
+</li>
+</ul>
+</li>
+<li>
+        <h5 id="按照注入点类型分类"   >
+          <a href="#按照注入点类型分类" class="heading-link"><i class="fas fa-link"></i></a>按照注入点类型分类</h5>
+      <ul>
+<li>数字型注入：</li>
+<li>字符型注入：</li>
+<li>搜索型注入：</li>
+</ul>
+</li>
+<li>
+        <h5 id="按照提交方式及数据位置分类"   >
+          <a href="#按照提交方式及数据位置分类" class="heading-link"><i class="fas fa-link"></i></a>按照提交方式及数据位置分类</h5>
+      <ul>
+<li>GET型注入：使用GET方法的注入类型。</li>
+<li>POST型注入：使用POST方法的注入类型。</li>
+<li>HTTP头注入：注入点在 HTTP 请求头部的某个字段中，通常包含以下几种。<ul>
+<li>COOKIE型注入：HTTP 请求的时候会带上客户端的 Cookie, 注入点存在 Cookie 当中的某个字段中。</li>
+<li>XFF（X-Forwarded-For）注入：HTTP请求中的X-Forwarded-For字段，通过修改X-Forwarded-for头对带入系统的dns进行SQL注入，通常一些网站的防注入功能会记录请求端真实IP地址并写入数据库或文件种，可以通过修改XFF头伪造真实IP..</li>
+<li>Clien-IP：作用同XFF。</li>
+<li>User-Agent 注入：有的网站会将客户端使用的操作系统或浏览器版本存入数据库中。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+        <h5 id="按照执行效果及语法"   >
+          <a href="#按照执行效果及语法" class="heading-link"><i class="fas fa-link"></i></a>按照执行效果及语法</h5>
+      <ul>
+<li>联合查询注入：可以使用UNION的注入。</li>
+<li>堆叠型注入：可以使用 ; 来同时执行多条SQL语句的注入。</li>
+<li>报错型注入：页面仅会返回数据库错误信息，或者把注入的语句的结果直接返回在页面中。</li>
+<li>布尔型注入：可以根据返回页面来判断条件真假的注入，即页面出错后不会返回错误，可能会是一片空白，或者提示统一的报错信息。</li>
+<li>时间型注入：不能根据页面返回内容判断任何信息，用条件语句查看时间延迟语句是否执行延时（通过浏览器时间线）来判断。</li>
+</ul>
+</li>
+</ul>
+
+        <h3 id="3-漏洞原理："   >
+          <a href="#3-漏洞原理：" class="heading-link"><i class="fas fa-link"></i></a>(3.)   漏洞原理：</h3>
+      <p>​    这里漏洞的产生需要两个必要的条件：</p>
+<ul>
+<li>参数可控</li>
+<li>带入数据库进行查询</li>
+</ul>
+<p><img src="web1.assets/image-20200915171437163.png" alt="image-20200915171437163"></p>
+<p>​                                                                                                    （图片来自互联网，仅供参考）</p>
+
+        <h3 id="（4-）-漏洞危害："   >
+          <a href="#（4-）-漏洞危害：" class="heading-link"><i class="fas fa-link"></i></a>（4.） 漏洞危害：</h3>
+      <ul>
+<li>获取WebShell：当权限为root且知道绝对路径时，可以直接写一句话木马到服务器。</li>
+<li>网页篡改：注入出后台管理员用户，登陆后台后发布恶意数据、篡改后台数据等。</li>
+<li>网站挂马 : 当拿到WebShell或者获取到服务器的权限后，可将一些网页木马挂在服务器上，去攻击别人。</li>
+<li>获取系统权限：当权限足够高时，可以获取系统主机的权限。</li>
+<li>万能密码：利用特定的Payload登录后台或者其他页面。<ul>
+<li>文件读取：读取f服务器种的敏感文件。</li>
+<li>数据库信息泄露：泄露数据库中存放的数据、用户隐私等。</li>
+</ul>
+</li>
+</ul>
+
+        <h3 id="5-漏洞修复方式："   >
+          <a href="#5-漏洞修复方式：" class="heading-link"><i class="fas fa-link"></i></a>(5.)  漏洞修复方式：</h3>
+      <p>​    <strong>解决SQL注入问题的关键是对所有可能来自用户输入的数据进行严格的检查、对数据库配置使用最小权限原则。</strong></p>
+<ul>
+<li>所有的查询语句都使用数据库提供的参数化查询接口，参数化的语句使用参数而不是将用户输入变量嵌入到SQL语句中。<ul>
+<li>对用户可能会拼接的危险字符进行过滤、转义、编码等处理。</li>
+<li>对参数变量长度进行限制，可以从一定程度上限制SQL注入的语句长度。</li>
+<li>前后端都使用统一的编码方式，避免被利用编码特性绕过。</li>
+<li>避免网站显示SQL错误信息，比如类型错误、字段不匹配等，防止攻击者利用这些错误信息进行一些判断。</li>
+<li>数据库权限最小化，减少SQL注入后带来的危害。</li>
+<li>安装一些WAF防护软件，来减少阻止一些SQL注入。</li>
+</ul>
+</li>
+</ul>
+<hr>
+
+        <h4 id="该文章部分内容参考自互联网，写的有些粗糙，欢迎斧正。"   >
+          <a href="#该文章部分内容参考自互联网，写的有些粗糙，欢迎斧正。" class="heading-link"><i class="fas fa-link"></i></a>该文章部分内容参考自互联网，写的有些粗糙，欢迎斧正。</h4>
+      </div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="http://example.com">crlf</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="http://example.com/2020/09/15/web1/">http://example.com/2020/09/15/web1/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://example.com/tags/Web%E5%AE%89%E5%85%A8/">Web安全</a></span></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2020/09/19/hello-world/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">Hello World</span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#SQL%E6%B3%A8%E5%85%A5%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text">
+          SQL注入简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E7%AE%80%E4%BB%8B%EF%BC%9A"><span class="toc-number">1.1.</span> <span class="toc-text">
+          (1.) 简介：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-SQL%E6%B3%A8%E5%85%A5%E5%88%86%E7%B1%BB%EF%BC%9A"><span class="toc-number">1.2.</span> <span class="toc-text">
+          (2.) SQL注入分类：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86%EF%BC%9A"><span class="toc-number">1.3.</span> <span class="toc-text">
+          (3.)   漏洞原理：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%884-%EF%BC%89-%E6%BC%8F%E6%B4%9E%E5%8D%B1%E5%AE%B3%EF%BC%9A"><span class="toc-number">1.4.</span> <span class="toc-text">
+          （4.） 漏洞危害：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E6%BC%8F%E6%B4%9E%E4%BF%AE%E5%A4%8D%E6%96%B9%E5%BC%8F%EF%BC%9A"><span class="toc-number">1.5.</span> <span class="toc-text">
+          (5.)  漏洞修复方式：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%A5%E6%96%87%E7%AB%A0%E9%83%A8%E5%88%86%E5%86%85%E5%AE%B9%E5%8F%82%E8%80%83%E8%87%AA%E4%BA%92%E8%81%94%E7%BD%91%EF%BC%8C%E5%86%99%E7%9A%84%E6%9C%89%E4%BA%9B%E7%B2%97%E7%B3%99%EF%BC%8C%E6%AC%A2%E8%BF%8E%E6%96%A7%E6%AD%A3%E3%80%82"><span class="toc-number">1.5.1.</span> <span class="toc-text">
+          该文章部分内容参考自互联网，写的有些粗糙，欢迎斧正。</span></a></li></ol></li></ol></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/images/icons/stun-logo.jpg" alt="avatar"></div><p class="sidebar-ov-author__text">人间值得 未来可期</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="https://github.com/crlf01/" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="https://weibo.com/" target="_blank" rel="noopener" data-popover="微博" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-weibo"></i></span></a><a class="sidebar-ov-social-item" href="https://www.zhihu.com/" target="_blank" rel="noopener" data-popover="知乎" data-popover-pos="up"><span class="sidebar-ov-social-item__icon">知</span></a></div><div class="sidebar-ov-feed"></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">3</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">1</div><div class="sidebar-ov-state-item__name">分类</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">2</div><div class="sidebar-ov-state-item__name">标签</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2020</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span><a href="https://github.com/crlf01" rel="noopener" target="_blank">crlf</a></span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v5.2.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.1.1</span></div><div class="busuanzi"><span class="busuanzi-siteuv"><span class="busuanzi-siteuv__icon"><i class="fas fa-user"></i></span><span class="busuanzi-siteuv__info">访问人数</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_uv"></span></span><span class="busuanzi-sitepv"><span class="busuanzi-siteuv__icon"><i class="fas fa-eye"></i></span><span class="busuanzi-siteuv__info">浏览总量</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_pv"></span></span></div><div>托管于 <a href="https://github.com/crlf01/crlf01.github.io/tree/hexo" rel="noopener" target="_blank">crlf</a></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/npm/ribbon.js@latest/dist/ribbon.min.js" size="120" alpha="0.6" zIndex="-1"></script><script src="https://cdn.jsdelivr.net/npm/pjax@latest/pjax.min.js"></script><script>window.addEventListener('DOMContentLoaded', function () {
+  var pjax = new Pjax({"selectors":["head title","#main",".pjax-reload"],"history":true,"scrollTo":false,"scrollRestoration":false,"cacheBust":false,"debug":false,"currentUrlFullReload":false,"timeout":0});
+  // 加载进度条的计时器
+  var loadingTimer = null;
+
+  // 重置页面 Y 方向上的滚动偏移量
+  document.addEventListener('pjax:send', function () {
+    $('.header-nav-menu').removeClass('show');
+    if (CONFIG.pjax && CONFIG.pjax.avoidBanner) {
+      $('html').velocity('scroll', {
+        duration: 500,
+        offset: $('#header').height(),
+        easing: 'easeInOutCubic'
+      });
+    }
+
+    var loadingBarWidth = 20;
+    var MAX_LOADING_WIDTH = 95;
+
+    $('.loading-bar').addClass('loading');
+    $('.loading-bar__progress').css('width', loadingBarWidth + '%');
+    clearInterval(loadingTimer);
+    loadingTimer = setInterval(function () {
+      loadingBarWidth += 3;
+      if (loadingBarWidth > MAX_LOADING_WIDTH) {
+        loadingBarWidth = MAX_LOADING_WIDTH;
+      }
+      $('.loading-bar__progress').css('width', loadingBarWidth + '%');
+    }, 500);
+  }, false);
+
+  window.addEventListener('pjax:complete', function () {
+    clearInterval(loadingTimer);
+    $('.loading-bar__progress').css('width', '100%');
+    $('.loading-bar').removeClass('loading');
+    setTimeout(function () {
+      $('.loading-bar__progress').css('width', '0');
+    }, 400);
+    $('link[rel=prefetch], script[data-pjax-rm]').each(function () {
+      $(this).remove();
+    });
+    $('script[data-pjax], #pjax-reload script').each(function () {
+      $(this).parent().append($(this).remove());
+    });
+
+    if (Stun.utils.pjaxReloadBoot) {
+      Stun.utils.pjaxReloadBoot();
+    }
+    if (Stun.utils.pjaxReloadScroll) {
+      Stun.utils.pjaxReloadScroll();
+    }
+    if (Stun.utils.pjaxReloadSidebar) {
+      Stun.utils.pjaxReloadSidebar();
+    }
+    if (false) {
+      if (Stun.utils.pjaxReloadHeader) {
+        Stun.utils.pjaxReloadHeader();
+      }
+      if (Stun.utils.pjaxReloadScrollIcon) {
+        Stun.utils.pjaxReloadScrollIcon();
+      }
+      if (Stun.utils.pjaxReloadLocalSearch) {
+        Stun.utils.pjaxReloadLocalSearch();
+      }
+    }
+  }, false);
+}, false);</script><div id="pjax-reload"><script src="https://cdn.jsdelivr.net/gh/sukkaw/busuanzi@latest/bsz.pure.mini.js" async></script></div><script src="/js/utils.js?v=2.1.1"></script><script src="/js/stun-boot.js?v=2.1.1"></script><script src="/js/scroll.js?v=2.1.1"></script><script src="/js/header.js?v=2.1.1"></script><script src="/js/sidebar.js?v=2.1.1"></script></body></html>

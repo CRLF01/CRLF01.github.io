@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://crlf01.github.io/2020/10/09/Windows&Linux%E5%B8%B8%E8%A7%81%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD%E6%96%B9%E6%B3%95/</loc>
+    
+    <lastmod>2020-10-09</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://crlf01.github.io/2020/09/20/github+hexo%E8%B8%A9%E5%9D%91%E8%AE%B0/</loc>
     
-    <lastmod>2020-09-20</lastmod>
+    <lastmod>2020-10-09</lastmod>
     
   </url>
   
@@ -25,22 +32,29 @@
 
   <url>
     <loc>http://crlf01.github.io/</loc>
-    <lastmod>2020-09-20</lastmod>
+    <lastmod>2020-10-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
   
   <url>
+    <loc>http://crlf01.github.io/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/</loc>
+    <lastmod>2020-10-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://crlf01.github.io/tags/Web%E5%AE%89%E5%85%A8/</loc>
-    <lastmod>2020-09-20</lastmod>
+    <lastmod>2020-10-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://crlf01.github.io/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</loc>
-    <lastmod>2020-09-20</lastmod>
+    <lastmod>2020-10-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -49,7 +63,7 @@
   
   <url>
     <loc>http://crlf01.github.io/categories/Blog%E2%80%94Tips/</loc>
-    <lastmod>2020-09-20</lastmod>
+    <lastmod>2020-10-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>

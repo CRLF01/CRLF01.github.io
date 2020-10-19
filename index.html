@@ -49,7 +49,7 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"><lin
 <figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.&#x2F;ngrok http 80</span><br></pre></td></tr></table></div></figure>
 
 <p><img src="/2020/10/18/MSF%E6%98%A0%E5%B0%84%E5%88%B0%E5%85%AC%E7%BD%91%E7%9A%84%E5%B8%B8%E8%A7%81%E6%96%B9%E6%B3%95/ngrok1.png" alt="ngrok1"></p>
-<p><img src="MSF%E6%98%A0%E5%B0%84%E5%88%B0%E5%85%AC%E7%BD%91%E7%9A%84%E5%B8%B8%E8%A7%81%E6%96%B9%E6%B3%95/http.png" alt="http"></p>
+<p><img src="/2020/10/18/MSF%E6%98%A0%E5%B0%84%E5%88%B0%E5%85%AC%E7%BD%91%E7%9A%84%E5%B8%B8%E8%A7%81%E6%96%B9%E6%B3%95/www.png" alt="www"></p>
 <p>ok，试完了http，我们来将tcp转发</p>
 <figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.&#x2F;ngrok tcp 8888</span><br></pre></td></tr></table></div></figure>
 
@@ -100,7 +100,7 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"><lin
 
 <p><img src="/2020/10/18/MSF%E6%98%A0%E5%B0%84%E5%88%B0%E5%85%AC%E7%BD%91%E7%9A%84%E5%B8%B8%E8%A7%81%E6%96%B9%E6%B3%95/frp.png" alt="frp"></p>
 <p>启动成功后可以通过网页端访问来查看</p>
-<p><img src="MSF%E6%98%A0%E5%B0%84%E5%88%B0%E5%85%AC%E7%BD%91%E7%9A%84%E5%B8%B8%E8%A7%81%E6%96%B9%E6%B3%95/http_s.png" alt="http_s"></p>
+<p><img src="/2020/10/18/MSF%E6%98%A0%E5%B0%84%E5%88%B0%E5%85%AC%E7%BD%91%E7%9A%84%E5%B8%B8%E8%A7%81%E6%96%B9%E6%B3%95/web.png" alt="web"></p>
 <p>接下来配置客户端kali的frpc.ini</p>
 <figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[common]</span><br><span class="line">server_addr &#x3D; 66.23.x.x      &#x2F;&#x2F;vps的ip</span><br><span class="line">server_port &#x3D; 6531     		&#x2F;&#x2F;连接frp的端口</span><br><span class="line">token &#x3D; crlf      			&#x2F;&#x2F;连接frp口令</span><br><span class="line">[msf]</span><br><span class="line">type &#x3D; tcp     			   &#x2F;&#x2F;tcp协议</span><br><span class="line">local_ip &#x3D; 127.0.0.1       &#x2F;&#x2F;填127.0.0.1即可</span><br><span class="line">local_port &#x3D; 6759         &#x2F;&#x2F;转发到vps的点端口</span><br><span class="line">remote_port &#x3D; 6000        &#x2F;&#x2F;访问端口</span><br></pre></td></tr></table></div></figure>
 

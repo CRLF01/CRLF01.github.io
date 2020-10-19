@@ -24,7 +24,9 @@ categories: MSF
 
 #### 方法①：使用Ngrok内网映射
 
-首先我们需要有一个Ngrok官网的账户，官网地址：https://ngrok.com/，注册好后，首先下载一个Ngrok软件，下载地址：https://ngrok.com/download，下载完成后，将软件复制到kali，解压后执行下图中的命令（ngrok官网会分配你个key）
+首先我们需要有一个Ngrok官网的账户，官网地址：https://ngrok.com/，注册好后，首先下载一个Ngrok软件，下载地址：https://ngrok.com/download   
+
+下载完成后，将软件复制到kali，解压后执行下图中的命令（ngrok官网会分配你个key）
 
 ![ngrok](MSF映射到公网的常见方法/ngrok.png)
 

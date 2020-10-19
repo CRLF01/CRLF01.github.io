@@ -40,7 +40,7 @@ categories: MSF
 
 ![ngrok1](MSF映射到公网的常见方法/ngrok1.png)
 
-![http](MSF映射到公网的常见方法/http.png)
+![www](MSF映射到公网的常见方法/www.png)
 
 
 
@@ -162,9 +162,7 @@ token = crlf			   //frp连接口令
 
 启动成功后可以通过网页端访问来查看
 
-![http_s](MSF映射到公网的常见方法/http_s.png)
-
-
+![web](MSF映射到公网的常见方法/web.png)
 
 
 

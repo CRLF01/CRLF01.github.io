@@ -35,6 +35,8 @@ exploit
 
 ![image-20201022211517291](MSF提权/image-20201022211517291.png)
 
+
+
 获取到新的session，backkground退回msf，session，执行getsystem
 
 ![image-20201022212015935](MSF提权/image-20201022212015935.png)
@@ -59,6 +61,8 @@ bypassuac，先bypassuac在通过getsystem获取一个更高权限的session
 ![image-20201022215103702](MSF提权/image-20201022215103702.png)
 
 ![image-20201022215139866](MSF提权/image-20201022215139866.png)
+
+
 
 三、利用漏洞提权
 

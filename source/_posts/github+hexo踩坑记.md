@@ -1363,6 +1363,10 @@ hexo back up
 
 
 
+详细细节参考：https://liuyib.github.io/hexo-theme-stun/zh-CN/guide/quick-start.html#%E5%AE%89%E8%A3%85
+
+
+
 ### **OK，终于写完了，写的有点乱，如有错误，欢迎斧正。**
 
 

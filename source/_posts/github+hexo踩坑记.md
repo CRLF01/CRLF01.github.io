@@ -1179,9 +1179,35 @@ menu:
 
 
 
+### 七、添加定义页面
+
+修改主题配置文件，添加 about  
+
+```
+menu:
+  about: /about/ || fas fa-book
+```
+
+生成页面文件，在 Hexo 根目录下执行指令
+
+```
+# 这里的 about 对应上一步你设置的路径名称
+$ hexo new page about
+```
+
+最后md文件里写介绍就ok了
+
+
+
+### 八、绑定域名
+
+根目录创建CNAME文件，去github绑定域名，去运营商绑定解析就ok了
+
 然后，保存起来，部署到github就ok了！
 
-### 七、其他Tiips
+
+
+### 九、其他Tiips
 
 (1.) 创建 **github soure **分支，备份原代码到github
 

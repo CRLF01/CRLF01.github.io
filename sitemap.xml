@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://crlf01.github.io/categories/index.html</loc>
+    
+    <lastmod>2020-10-23</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://crlf01.github.io/tags/index.html</loc>
+    
+    <lastmod>2020-10-23</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://crlf01.github.io/2020/10/22/MSF%E6%8F%90%E6%9D%83/</loc>
     
     <lastmod>2020-10-22</lastmod>

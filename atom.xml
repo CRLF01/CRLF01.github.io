@@ -6,7 +6,7 @@
   <link href="http://crlf01.github.io/atom.xml" rel="self"/>
   
   <link href="http://crlf01.github.io/"/>
-  <updated>2020-10-23T03:41:00.475Z</updated>
+  <updated>2020-10-23T05:43:29.102Z</updated>
   <id>http://crlf01.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://crlf01.github.io/2020/10/23/%E5%85%AC%E7%BD%91%E5%AE%89%E8%A3%85MSF/"/>
     <id>http://crlf01.github.io/2020/10/23/%E5%85%AC%E7%BD%91%E5%AE%89%E8%A3%85MSF/</id>
     <published>2020-10-23T03:35:18.000Z</published>
-    <updated>2020-10-23T03:41:00.475Z</updated>
+    <updated>2020-10-23T05:43:29.102Z</updated>
     
     <content type="html"><![CDATA[<p>CentOS7安装MSF</p><a id="more"></a><p>一键安装</p><figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">curl https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;rapid7&#x2F;metasploit-omnibus&#x2F;master&#x2F;config&#x2F;templates&#x2F;metasploit-framework-wrappers&#x2F;msfupdate.erb &gt; msfinstall &amp;&amp; chmod 755 msfinstall &amp;&amp; .&#x2F;msfinstall </span><br><span class="line"></span><br><span class="line">adduser msf           #添加msf用户</span><br><span class="line"></span><br><span class="line">su msf                #切换到msf用户</span><br><span class="line"></span><br><span class="line">cd  &#x2F;opt&#x2F;metasploit-framework&#x2F;bin   #切换到msf所在的目录 </span><br><span class="line"></span><br><span class="line">.&#x2F;msfconsole          #以后启动msfconsole，都切换到msf用户下启动，这样会同步数据库。如果使用root用户启动的话，不会同步数据库  </span><br><span class="line"></span><br></pre></td></tr></table></div></figure><p>也可以将msfconsole加入到执行目录下，这样在任何目录直接msfconsole就可以了<br>ln -s /opt/metasploit-framework/bin/msfconsole /usr/bin/msfconsole</p><p>#备注：<br>#初次运行msf会创建数据库，但是msf默认使用的PostgreSQL数据库不能与root用户关联，这也这也就是需要新建用户msf来运行metasploit的原因所在。如果你一不小心手一抖，初次运行是在root用户下，请使用 msfdb reinit 命令，然后使用非root用户初始化数据库。        </p><p>MSF后期的升级：msfupdate</p><p>转载自：<span class="exturl"><a class="exturl__link" href="https://www.cnblogs.com/qi-yuan/p/13780876.html">https://www.cnblogs.com/qi-yuan/p/13780876.html</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p><p>侵权请联系删除！</p><hr>]]></content>
     

@@ -9,6 +9,20 @@
   </url>
   
   <url>
+    <loc>http://crlf01.github.io/about/index.html</loc>
+    
+    <lastmod>2020-10-23</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://crlf01.github.io/2020/09/19/hello-world/</loc>
+    
+    <lastmod>2020-10-23</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://crlf01.github.io/2020/10/10/Windows-Linux%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%E5%89%8D%E5%A5%8F/</loc>
     
     <lastmod>2020-10-23</lastmod>
@@ -44,13 +58,6 @@
   </url>
   
   <url>
-    <loc>http://crlf01.github.io/reading/index.html</loc>
-    
-    <lastmod>2020-10-23</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://crlf01.github.io/tags/index.html</loc>
     
     <lastmod>2020-10-23</lastmod>
@@ -61,13 +68,6 @@
     <loc>http://crlf01.github.io/categories/index.html</loc>
     
     <lastmod>2020-10-23</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://crlf01.github.io/2020/09/19/hello-world/</loc>
-    
-    <lastmod>2020-09-19</lastmod>
     
   </url>
   
@@ -88,14 +88,14 @@
   </url>
   
   <url>
-    <loc>http://crlf01.github.io/tags/Web%E5%AE%89%E5%85%A8/</loc>
+    <loc>http://crlf01.github.io/tags/MSF/</loc>
     <lastmod>2020-10-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://crlf01.github.io/tags/MSF/</loc>
+    <loc>http://crlf01.github.io/tags/Web%E5%AE%89%E5%85%A8/</loc>
     <lastmod>2020-10-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -118,14 +118,14 @@
   </url>
   
   <url>
-    <loc>http://crlf01.github.io/categories/Web%E5%AE%89%E5%85%A8/</loc>
+    <loc>http://crlf01.github.io/categories/MSF/</loc>
     <lastmod>2020-10-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://crlf01.github.io/categories/MSF/</loc>
+    <loc>http://crlf01.github.io/categories/Web%E5%AE%89%E5%85%A8/</loc>
     <lastmod>2020-10-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>

@@ -17,7 +17,7 @@ categories: Blog—Tips
 
 #### 	**在博客搭建的过程中查阅了各种网上的文章，多数写的很cd，费尽周折终于搭建了一个看起来还不错的博客，这里记录下踩过的坑。**
 
-
+<!-- more -->
 
 ### 二、环境安装
 
@@ -1132,9 +1132,56 @@ cdn:
 
 ```
 
+
+
+### 六、开启标签、分页、摘要
+
+添加标签和分页，博客根目录执行
+
+```
+# 启用分类页，执行这条指令
+$ hexo new page categories
+
+# 启用标签页，执行这条指令
+$ hexo new page tags
+```
+
+在 Hexo 根目录下，找到 `source/categories` 或 `source/tags` 文件夹中的 Markdown 文件，设置 Front-Matter：
+
+```
+---
+# 如果是分类页，设置这个
+type: "categories"
+
+# 如果是标签页，设置这个
+type: "tags"
+---
+```
+
+
+
+修改主题配置文件
+
+将 `categories` 或 `tags` 对应项取消注释
+
+```
+# `||` 分隔符之前是页面路径，`||` 分隔符之后是图标
+# 用法（有图标）: `Key: /路径/ || fa(s|r|l|d|b) fa-图标名称`
+# 用法（无图标）: `Key: /路径/`
+# fas far fal fad fab 是 FontAwesome 5.x 中图标的前缀，你需要根据具体图标自行设置
+# 查找图标名称，请访问：https://fontawesome.com/icons
+menu:
+  home: / || fas fa-home
+  archives: /archives/ || fas fa-folder-open
+  # categories: /categories/ || fas fa-layer-group
+  # tags: /tags/ || fas fa-tags
+```
+
+
+
 然后，保存起来，部署到github就ok了！
 
-### 六、其他Tiips
+### 七、其他Tiips
 
 (1.) 创建 **github soure **分支，备份原代码到github
 
@@ -1307,6 +1354,18 @@ hexo back up
   });
   ```
 
-  ---
+
+(7.)  文章摘要
+
+```
+如果想要保留文章摘要，你需要在文章的 Markdown 源文件中添加 <!-- more --> 标记。标记之前的部分都会被保留为文章摘要，显示在文章列表中。
+```
+
+
 
 ### **OK，终于写完了，写的有点乱，如有错误，欢迎斧正。**
+
+
+
+---
+

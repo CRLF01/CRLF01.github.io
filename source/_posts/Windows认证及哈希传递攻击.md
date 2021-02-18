@@ -1,5 +1,5 @@
 ---
-title: [转载]Windows认证及哈希传递攻击
+title: Windows认证及哈希传递攻击
 top: true
 cover: false
 toc: true
@@ -503,5 +503,5 @@ kerberos::golden /domain:<所属域名称> /sid:<服务账户sid> /target:<目�
 
 
 
-***原文地址：https://xz.aliyun.com/t/6600  侵删！***
+*** 本文转载自先知社区，原文地址：https://xz.aliyun.com/t/6600  侵删！***
 

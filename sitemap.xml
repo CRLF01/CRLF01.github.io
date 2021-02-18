@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://crlf01.github.io/2021/01/15/%E6%95%B0%E6%8D%AE%E5%8C%85%E7%9A%84%E6%8D%95%E8%8E%B7/</loc>
+    
+    <lastmod>2021-01-15</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://crlf01.github.io/2020/11/13/%E5%9F%BA%E4%BA%8EMSF%E6%A8%A1%E5%9D%97%E7%9A%84%E5%90%8E%E6%B8%97%E9%80%8F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/</loc>
     
     <lastmod>2021-01-15</lastmod>
@@ -88,7 +95,7 @@
 
   <url>
     <loc>http://crlf01.github.io/</loc>
-    <lastmod>2021-01-15</lastmod>
+    <lastmod>2021-02-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -96,28 +103,28 @@
   
   <url>
     <loc>http://crlf01.github.io/tags/%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87/</loc>
-    <lastmod>2021-01-15</lastmod>
+    <lastmod>2021-02-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://crlf01.github.io/tags/MSF/</loc>
-    <lastmod>2021-01-15</lastmod>
+    <lastmod>2021-02-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://crlf01.github.io/tags/Web%E5%AE%89%E5%85%A8/</loc>
-    <lastmod>2021-01-15</lastmod>
+    <lastmod>2021-02-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://crlf01.github.io/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</loc>
-    <lastmod>2021-01-15</lastmod>
+    <lastmod>2021-02-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -126,28 +133,28 @@
   
   <url>
     <loc>http://crlf01.github.io/categories/%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87/</loc>
-    <lastmod>2021-01-15</lastmod>
+    <lastmod>2021-02-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://crlf01.github.io/categories/MSF/</loc>
-    <lastmod>2021-01-15</lastmod>
+    <lastmod>2021-02-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://crlf01.github.io/categories/Web%E5%AE%89%E5%85%A8/</loc>
-    <lastmod>2021-01-15</lastmod>
+    <lastmod>2021-02-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://crlf01.github.io/categories/Blog%E2%80%94Tips/</loc>
-    <lastmod>2021-01-15</lastmod>
+    <lastmod>2021-02-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
